@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  # ---------------------------
+  # Diana on Conda
+  # ---------------------------
+
+  diana-amd64:
+    build:
+      context: .
+    image: derekmerck/diana:amd64
+
+  diana-arm32v7:
+    build:
+      context: .
+      args:
+        ARCH: "arm32v7"
+    image: derekmerck/diana:arm32v7
+
+  # ---------------------------
+  # Diana on Keras+TF for ML
+  # ---------------------------
+
+  diana-learn-amd64:
+    build:
+      context: .
+      dockerfile: Dockerfile-learn
+    image: derekmerck/diana-learn:amd64
+
+  diana-learn-arm32v7:
+    build:
+      context: .
+      dockerfile: Dockerfile-learn
+      args:
+        ARCH: arm32v7
+    image: derekmerck/diana-learn:py3-arm32v7

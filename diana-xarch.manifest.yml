@@ -1,0 +1,27 @@
+- image: "derekmerck/diana:latest"
+
+  manifests:
+    - image: "derekmerck/diana:amd64"
+      platform:
+        architecture: amd64
+        os: linux
+
+    - image: "derekmerck/diana:arm32v7"
+      platform:
+        architecture: arm
+        variant: v7
+        os: linux
+
+- image: "derekmerck/diana-learn:latest"
+
+  manifests:
+    - image: "derekmerck/diana-learn:amd64"
+      platform:
+        architecture: amd64
+        os: linux
+
+    - image: "derekmerck/diana-learn:arm32v7"
+      platform:
+        architecture: arm
+        variant: v7
+        os: linux
