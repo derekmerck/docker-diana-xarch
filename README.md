@@ -8,8 +8,9 @@ Derek Merck
 Rhode Island Hospital and Brown University  
 Providence, RI  
 
-Build multi-arch DIANA and DIANA-Learn Python Docker images for embedded systems.
+Build multi-arch [DIANA][] and DIANA-Learn Python Docker images for embedded systems.
 
+[DIANA]:https://github.com/derekmerck/diana
 
 Use It
 ----------------------
