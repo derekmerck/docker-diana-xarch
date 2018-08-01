@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 RUN conda install pillow
 
 RUN git clone -b diana-star https://github.com/derekmerck/DIANA /usr/share/source/diana \
-    && pip install -e /usr/share/source/diana/packages/guidmint /usr/share/source/diana/packages/diana
+    && pip install -e /usr/share/source/diana/packages/guidmint \
+                      /usr/share/source/diana/packages/diana \
+                      /usr/share/source/diana/packages/halibut
 
 ENV TZ=America/New_York
 # Disable resin.io's systemd init system
