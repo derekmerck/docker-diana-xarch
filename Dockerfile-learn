@@ -1,10 +1,9 @@
 # xArch Diana-Learn Image
 # Derek Merck, Summer 2018
 
-ARG PYTHON_MAJOR=3
 ARG ARCH="amd64"
 
-FROM derekmerck/keras-tf:py${PYTHON_MAJOR}-tf190-k222-${ARCH}
+FROM derekmerck/keras-tf:py3-tf190-k222-${ARCH}
 MAINTAINER Derek Merck <derek_merck@brown.edu>
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \

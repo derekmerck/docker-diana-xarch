@@ -1,10 +1,9 @@
 # xArch Diana Image
 # Derek Merck, Summer 2018
 
-ARG PYTHON_MAJOR=3
 ARG ARCH="amd64"
 
-FROM derekmerck/conda:py${PYTHON_MAJOR}-${ARCH}
+FROM derekmerck/conda:py3-${ARCH}
 MAINTAINER Derek Merck <derek_merck@brown.edu>
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
