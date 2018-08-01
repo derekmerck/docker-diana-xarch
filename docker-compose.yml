@@ -34,4 +34,4 @@ services:
       dockerfile: Dockerfile-learn
       args:
         ARCH: arm32v7
-    image: derekmerck/diana-learn:py3-arm32v7
+    image: derekmerck/diana-learn:arm32v7
