@@ -7,7 +7,8 @@ FROM derekmerck/conda:py3-${ARCH}
 MAINTAINER Derek Merck <derek_merck@brown.edu>
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
-        git\
+        git \
+        libgcdm-tools \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN conda install pillow
