@@ -2,10 +2,6 @@ version: '3'
 
 services:
 
-  # ---------------------------
-  # Diana on Conda
-  # ---------------------------
-
   diana-amd64:
     build:
       context: .
@@ -15,23 +11,13 @@ services:
     build:
       context: .
       args:
-        ARCH: "arm32v7"
+        RESIN_ARCH: raspberrypi3
     image: derekmerck/diana:arm32v7
 
-  # ---------------------------
-  # Diana on Keras+TF for ML
-  # ---------------------------
-
-  diana-learn-amd64:
+  diana-arm64v8:
     build:
       context: .
-      dockerfile: Dockerfile-learn
-    image: derekmerck/diana-learn:amd64
-
-  diana-learn-arm32v7:
-    build:
-      context: .
-      dockerfile: Dockerfile-learn
+      dockerfile: Dockerfile-arm64
       args:
-        ARCH: arm32v7
-    image: derekmerck/diana-learn:arm32v7
+        RESIN_ARCH: jetson-tx2
+    image: derekmerck/diana:arm64v8

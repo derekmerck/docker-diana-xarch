@@ -10,21 +10,20 @@ Providence, RI
 
 Build multi-arch [DIANA][] and DIANA-Learn Python Docker images for embedded systems.
 
-[DIANA]:https://github.com/derekmerck/diana
+[DIANA]:https://github.com/derekmerck/diana@system-python
 
 Use It
 ----------------------
 
 ```bash
 $ docker run derekmerck/diana:latest
-$ docker run derekmerck/diana-learn:latest
 ```
 
 
 Build It
 --------------
 
-This image is based on the [`derekmerck/conda`][] and `derekmerck/keras-tf` images, which are, in turn, based on the `resin/$ARCH-debian:stretch` image.  [Resin.io][] base images include a [QEMU][] cross-compiler to facilitate building images for low-power single-board computers on more powerful Intel-architecture desktops and servers.
+This image uses system python and the `resin/$ARCH-debian:stretch` image.  [Resin.io][] base images include a [QEMU][] cross-compiler to facilitate building images for low-power single-board computers on more powerful Intel-architecture desktops and servers.
 
 `docker-compose.yml` contains build descriptions for all relevant architectures.
 
@@ -36,7 +35,7 @@ This image is based on the [`derekmerck/conda`][] and `derekmerck/keras-tf` imag
 ### `amd64`
 
 ```bash
-$ docker-compose build diana-amd64 diana-learn-amd64
+$ docker-compose build diana-amd64
 ```
 
 Desktop computers/vms, [UP boards][], and the [Intel NUC][] are `amd64` devices.  The appropriate image can be built and pushed from [Travis CI][].
@@ -51,7 +50,7 @@ Desktop computers/vms, [UP boards][], and the [Intel NUC][] are `amd64` devices.
 Most low-power single board computers such as the Raspberry Pi and Beagleboard are `arm32v7` devices.  Appropriate images can be cross-compiled and pushed from Travis CI.
 
 ```bash
-$ docker-compose build diana-arm32v7 diana-learn-arm32v7
+$ docker-compose build diana-arm32v7
 ```
 
 [Raspberry Pi]: https://www.raspberrypi.org
@@ -60,18 +59,10 @@ $ docker-compose build diana-arm32v7 diana-learn-arm32v7
 
 ### `arm64v8`
  
-The [NVIDIA Jetson TX2][] uses a Tegra `arm64v8` cpu.  The appropriate image can be built natively and pushed from [Packet.io][], using a brief tenancy on a bare-metal Cavium ThunderX ARMv8 server.
+The [NVIDIA Jetson TX2][] uses a Tegra `arm64v8` cpu.  Appropriate images can be cross-compiled and pushed from Travis CI.
 
 ```bash
-$ apt update && apt upgrade
-$ curl -fsSL get.docker.com -o get-docker.sh
-$ sh get-docker.sh 
-$ docker run hello-world
-$ apt install git python-pip
-$ pip install docker-compose
-$ git clone http://github.com/derekmerck/diana-xarch
-$ cd diana-xarch
-$ docker-compose build diana-arm64v8 diana-learn-arm64v8
+$ docker-compose build diana-arm64v8
 ```
 
 Although [Resin uses Packet ARM servers to compile arm32 images][resin-on-packet], the available ThunderX does not implement the arm32 instruction set, so it [cannot compile natively for the Raspberry Pi][no-arm32].

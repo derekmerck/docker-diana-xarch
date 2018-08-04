@@ -13,11 +13,13 @@ addons:
       - docker-ce
 
 env:
+  global:
+    - SERVICE="diana"
+
   matrix:
-    - SERVICE="diana" ARCH_TAG="amd64"
-    - SERVICE="diana" ARCH_TAG="arm32v7"
-    - SERVICE="diana-learn" ARCH_TAG="amd64"
-    - SERVICE="diana-learn" ARCH_TAG="arm32v7"
+    - ARCH_TAG="amd64"
+    - ARCH_TAG="arm32v7"
+    - ARCH_TAG="arm64v8"
 
 before_install:
 

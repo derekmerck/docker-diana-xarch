@@ -61,8 +61,11 @@ RUN pip3 install --no-deps --no-cache-dir -U \
         absl-py \
         pyparsing
 
-RUN pip3 install --no-deps --no-cache-dir -U \
-        tensorflow \
+RUN curl -O https://www.dropbox.com/s/pmijwdx0iv5mcv2/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
+    && pip install --no-deps --no-cache-dir -vvvv tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
+    && rm tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl
+
+RUN pip3 install --no-deps --no-cache-dir \
         keras
 
 RUN git clone -b diana-star https://github.com/derekmerck/DIANA /opt/diana \
