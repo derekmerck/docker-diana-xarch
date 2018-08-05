@@ -66,9 +66,9 @@ RUN pip3 install --no-deps --no-cache-dir -U \
         absl-py \
         pyparsing
 
-RUN pip3 install --no-deps --no-cache-dir -U \
-        tensorflow \
-        keras
+#RUN pip3 install --no-deps --no-cache-dir -U \
+#        tensorflow \
+#        keras
 
 RUN git clone -b diana-star https://github.com/derekmerck/DIANA /opt/diana \
     && pip3 install -e /opt/diana/packages/guidmint \

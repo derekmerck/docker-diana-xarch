@@ -1,0 +1,15 @@
+# xArch Diana-Learn System Python Image
+# Derek Merck, Summer 2018
+
+ARG ARCH_TAG="amd64"
+#ARG ARCH_TAG="arm32v7"
+#ARG ARCH_TAG="arm64v8"
+
+FROM derekmerck/diana:${ARCH_TAG}
+MAINTAINER Derek Merck <derek_merck@brown.edu>
+
+ENV KERAS_BACKEND=tensorflow
+
+RUN pip3 install --no-deps --no-cache-dir -U \
+        tensorflow \
+        keras

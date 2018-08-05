@@ -39,19 +39,21 @@ services:
   diana-learn-amd64:
     build:
       context: .
-    image: derekmerck/diana-learn:amd64
+      dockerfile: Dockerfile-learn
+    image: derekmerck/diana:learn-amd64
 
   diana-learn-arm32v7:
     build:
       context: .
       args:
+        dockerfile: Dockerfile-learn
         ARCH_TAG: arm32v7
     image: derekmerck/diana:learn-arm32v7
 
   diana-learn-arm64v8:
     build:
       context: .
-      dockerfile: Dockerfile-arm64
+      dockerfile: Dockerfile-learn-arm64v8
       args:
         RESIN_ARCH: arm64v8
     image: derekmerck/diana:learn-arm64v8
@@ -65,11 +67,10 @@ services:
   #   - diana
   # ---------------------------
 
-  # Depends on arm32v7 image -- needs to be included after regular arm build in travis
   diana-movidius-arm32v7:
     build:
       context: .
-      dockerfile: Dockerfile-movidius
-    args:
-      RESIN_ARCH: arm32v7
+      dockerfile: Dockerfile-movidius-arm32v7
+      args:
+        RESIN_ARCH: arm32v7
     image: derekmerck/diana:movidius-arm32v7

@@ -18,6 +18,26 @@
         variant: v8
         os: linux
 
+- image: "derekmerck/diana:learn"
+
+  manifests:
+    - image: "derekmerck/diana:learn-amd64"
+      platform:
+        architecture: amd64
+        os: linux
+
+    - image: "derekmerck/diana:learn-arm32v7"
+      platform:
+        architecture: arm
+        variant: v7
+        os: linux
+
+    - image: "derekmerck/diana:learn-arm64v8"
+      platform:
+        architecture: arm
+        variant: v8
+        os: linux
+
 - image: "derekmerck/diana:movidius"
 
   manifests:
