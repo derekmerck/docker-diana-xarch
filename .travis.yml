@@ -1,3 +1,8 @@
+# safelist
+branches:
+  only:
+  - system-python
+
 dist: trusty
 language: python
 group: edge
