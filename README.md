@@ -10,7 +10,7 @@ Providence, RI
 
 Build multi-arch [DIANA][] and DIANA-Learn Python Docker images for embedded systems.
 
-[DIANA]:https://github.com/derekmerck/diana@system-python
+[DIANA]:https://github.com/derekmerck/diana@diana-star
 
 Use It
 ----------------------
@@ -57,11 +57,11 @@ $ docker-compose build diana-arm32v7 diana-movidius-arm32v7
 [Raspberry Pi]: https://www.raspberrypi.org
 [Beagleboard]: https://beagleboard.org
 
-The official `arm32` tensorflow wheels are available from pypi or as [nightly build artifacts][tfrpi].  The wheel name for the python 3.4 build has to be manipuated to remove the platform restriction tags to install on 3.5 or 3.6.
+The official `arm32` tensorflow wheels are available from pypi or as [nightly build artifacts][tfrpi].  The wheel name for the python 3.4 build has to be manipuated to remove the platform restriction tags in order to install on 3.5 or 3.6.
 
 [tfrpi]: http://ci.tensorflow.org/view/Nightly/
 
-The [Intel Movidius][] NPU drivers from the [NCSDK v2.0][] are available in the `diana:movidius` tag.  Only the toolkit itself is installed, tensorflow is from pypi and [caffe][] must be installed separately.
+The [Intel Movidius][] NPU drivers from the [NCSDK v2.0][] are available in the `diana:movidius` tag.  Only the toolkit itself is installed, tensorflow is from pypi and [caffe][] must be installed separately if needed.
 
 [Intel Movidius]: https://www.movidius.com
 [NCSDK v2.0]: https://github.com/movidius/ncsdk
@@ -69,10 +69,20 @@ The [Intel Movidius][] NPU drivers from the [NCSDK v2.0][] are available in the 
 
 ### `arm64v8`
  
-The [NVIDIA Jetson TX2][] uses a Tegra `arm64v8` cpu.  Appropriate images can be cross-compiled and pushed from Travis CI.
+The [NVIDIA Jetson TX2][] uses a Tegra `arm64v8` cpu.  The appropriate image can be built natively and pushed from [Packet.io][], using a brief tenancy on a bare-metal Cavium ThunderX ARMv8 server.
 
 ```bash
+$ apt update && apt upgrade
+$ curl -fsSL get.docker.com -o get-docker.sh
+$ sh get-docker.sh 
+$ docker run hello-world
+$ apt install git python-pip
+$ pip install docker-compose
+$ git clone http://github.com/derekmerck/diana-xarch@system_python
+$ cd orthanc-xarch
 $ docker-compose build diana-arm64v8
+$ docker-compose build diana-learn-arm64v8
+$ python3 manifest-it.py diana-xarch.manifest.yml
 ```
 
 Although [Resin uses Packet ARM servers to compile arm32 images][resin-on-packet], the available ThunderX does not implement the arm32 instruction set, so it [cannot compile natively for the Raspberry Pi][no-arm32].

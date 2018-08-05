@@ -43,13 +43,13 @@ install:
   # Build image
   - docker-compose build $SERVICE1-$ARCH_TAG
   - docker-compose build $SERVICE2-$ARCH_TAG
-  - '["$SERVICE3"] && docker-compose build $SERVICE3-$ARCH_TAG || echo "No SERVICE3 defined"'
+  - '[ ! -z $SERVICES3 ] && docker-compose build $SERVICE3-$ARCH_TAG || echo "No SERVICE3 defined"'
 
-script: true
+script:
 
-#  - (docker run --rm derekmerck/diana:$ARCH_TAG python3 /opt/diana/apps/cli/clf_chest_pose.py -m /opt/diana/tests/resources/chest_cr/pose_weights.h5 -d /opt/diana/tests/resources/chest_cr/CR01.dcm 2> /dev/null ) | grep -q FRONTAL
-#
-#  - (docker run --rm derekmerck/diana:$ARCH_TAG python3 /opt/diana/apps/cli/clf_chest_pose.py -m /opt/diana/tests/resources/chest_cr/pose_weights.h5 -d /opt/diana/tests/resources/chest_cr/CR00.dcm 2> /dev/null ) | grep -q LATERAL
+  - docker run --rm derekmerck/diana:learn-$ARCH_TAG python3 /opt/diana/apps/cli/classify-it.py -m /opt/diana/tests/resources/chest_cr/pose_weights.h5 -d /opt/diana/tests/resources/chest_cr/CR00.dcm
+
+  - docker run --rm derekmerck/diana:learn-$ARCH_TAG python3 /opt/diana/apps/cli/classify-it.py -m /opt/diana/tests/resources/chest_cr/pose_weights.h5 -d /opt/diana/tests/resources/chest_cr/CR01.dcm
 
 after_success:
 

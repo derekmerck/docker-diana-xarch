@@ -45,8 +45,8 @@ services:
   diana-learn-arm32v7:
     build:
       context: .
+      dockerfile: Dockerfile-learn
       args:
-        dockerfile: Dockerfile-learn
         ARCH_TAG: arm32v7
     image: derekmerck/diana:learn-arm32v7
 

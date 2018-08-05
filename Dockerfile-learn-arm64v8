@@ -11,13 +11,14 @@ MAINTAINER Derek Merck <derek_merck@brown.edu>
 ENV KERAS_BACKEND=tensorflow
 
 # Local buid
-COPY tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl /tmp
+#COPY tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl /tmp
 
 # Remote build
-#RUN curl -L -o /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
-#       https://www.dropbox.com/s/pmijwdx0iv5mcv2/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl?dl=1
+RUN curl -L -o /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl https://www.dropbox.com/s/pmijwdx0iv5mcv2/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl?dl=1
 
-RUN pip install --no-deps --no-cache-dir -vvvv /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
+# --no-cache-dir
+
+RUN pip install --no-deps /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
     && rm /tmp/tensorflow-1.9.0rc0-cp3-cp35m-any.whl
 
 RUN pip3 install --no-deps --no-cache-dir \

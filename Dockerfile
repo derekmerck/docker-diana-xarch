@@ -36,14 +36,13 @@ RUN apt update \
         libsqlite3-dev \
         libssl1.0-dev \
         zlib1g-dev \
-        libdcmtk2-dev \
         libgdcm-tools \
-        libatlas3-base \
+        libatlas-base-dev \
+        libopenblas-dev \
+        gfortran \
         libhdf5-dev \
         libffi-dev \
-    && apt clean && rm -rf /var/lib/apt/lists/*
-
-ENV KERAS_BACKEND=tensorflow
+      && apt clean && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install -U pip
 
