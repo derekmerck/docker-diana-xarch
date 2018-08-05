@@ -1,4 +1,4 @@
-# xArch Movidius Image
+# xArch Diana-Movidius Image
 # Derek Merck, Summer 2018
 
 ARG ARCH="arm32v7"
@@ -10,20 +10,16 @@ RUN apt update \
     && apt install -y --no-install-recommends \
         python3-matplotlib \
         python-dev \
+        python-wheel \
         python-pip \
         python-setuptools \
         python-numpy-dev \
         python-openssl \
         python-cffi \
         python-h5py \
+        python-scipy \
         python-matplotlib \
     && apt-get clean
-
-RUN pip install -U pip
-
-RUN apt update && apt install \
-     python3-wheel \
-     python-wheel
 
 RUN pip install --no-deps --no-cache-dir -U \
         wheel \

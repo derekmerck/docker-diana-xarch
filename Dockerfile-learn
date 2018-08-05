@@ -8,8 +8,35 @@ ARG ARCH_TAG="amd64"
 FROM derekmerck/diana:${ARCH_TAG}
 MAINTAINER Derek Merck <derek_merck@brown.edu>
 
+RUN apt update \
+    && apt upgrade \
+    && apt install -y --no-install-recommends \
+        python3-scipy \
+        python3-h5py \
+        python3-protobuf \
+        python3-numpy-dev \
+        python3-cffi \
+        cython3 \
+        libhdf5-dev \
+        libatlas-base-dev \
+        libopenblas-dev \
+        gfortran \
+    && apt clean && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --no-deps --no-cache-dir -U \
+        scipy \
+        pydot \
+        h5py \
+        numpy \
+        parameterized \
+        protobuf \
+        absl-py \
+        pyparsing
+
 ENV KERAS_BACKEND=tensorflow
 
 RUN pip3 install --no-deps --no-cache-dir -U \
         tensorflow \
         keras
+
+RUN pip3 install -e /opt/diana/packages/halibut

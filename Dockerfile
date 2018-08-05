@@ -21,13 +21,8 @@ RUN apt update \
         python3-dev \
         python3-pip \
         python3-setuptools \
-        python3-numpy-dev \
         python3-openssl \
-        python3-cffi \
-        python3-h5py \
         python3-wheel \
-        python3-protobuf \
-        cython3 \
         software-properties-common \
         libfreetype6-dev \
         pkg-config \
@@ -37,10 +32,6 @@ RUN apt update \
         libssl1.0-dev \
         zlib1g-dev \
         libgdcm-tools \
-        libatlas-base-dev \
-        libopenblas-dev \
-        gfortran \
-        libhdf5-dev \
         libffi-dev \
       && apt clean && rm -rf /var/lib/apt/lists/*
 
@@ -48,31 +39,24 @@ RUN pip3 install -U pip
 
 RUN pip3 install --no-deps --no-cache-dir -U \
         wheel \
-        numpy \
+        beautifulsoup4 \
         asn1crypto \
         cryptography \
         pyopenssl \
-        parameterized \
         pydicom \
+        requests \
         ruamel.yaml \
-        pydot \
         pillow \
-        scipy \
-        h5py \
-        pyyaml \
-        pillow \
-        protobuf \
-        absl-py \
-        pyparsing
+        pyyaml
 
 #RUN pip3 install --no-deps --no-cache-dir -U \
 #        tensorflow \
 #        keras
 
-RUN git clone -b diana-star https://github.com/derekmerck/DIANA /opt/diana \
+RUN mkdir /opt/diana \
+    && git clone -b diana-star https://github.com/derekmerck/DIANA /opt/diana \
     && pip3 install -e /opt/diana/packages/guidmint \
-                       /opt/diana/packages/diana \
-                       /opt/diana/packages/halibut
+                       /opt/diana/packages/diana
 
 ENV TZ=America/New_York
 # Disable resin.io's systemd init system
