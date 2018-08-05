@@ -1,7 +1,7 @@
 # safelist
 branches:
   only:
-  - system-python
+  - system_python
 
 dist: trusty
 language: python
