@@ -3,7 +3,7 @@
 
 ARG ARCH="arm32v7"
 
-FROM derekmerck/diana:${ARCH}
+FROM derekmerck/diana:learn-${ARCH}
 MAINTAINER Derek Merck <derek_merck@brown.edu>
 
 RUN apt update \

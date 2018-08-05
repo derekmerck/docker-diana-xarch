@@ -19,13 +19,13 @@ addons:
 
 env:
   global:
-    - SERVICE1="diana"
-    - SERVICE2="diana-learn"
+    - SERVICE0="diana"
+    - SERVICE1="diana-learn"
 
   matrix:
     - ARCH_TAG="amd64"
-    - ARCH_TAG="arm32v7" SERVICE3="diana-movidius"
-    - ARCH_TAG="arm64v8"
+#    - ARCH_TAG="arm32v7"
+#    - ARCH_TAG="arm64v8"
 
 before_install:
 
@@ -41,9 +41,8 @@ before_install:
 install:
 
   # Build image
+  - docker-compose build $SERVICE0-$ARCH_TAG
   - docker-compose build $SERVICE1-$ARCH_TAG
-  - docker-compose build $SERVICE2-$ARCH_TAG
-  - '[ ! -z $SERVICES3 ] && docker-compose build $SERVICE3-$ARCH_TAG || echo "No SERVICE3 defined"'
 
 script:
 
