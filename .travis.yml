@@ -1,7 +1,7 @@
 # safelist
 branches:
   only:
-  - system_python
+    - system_python
 
 dist: trusty
 language: python
@@ -43,7 +43,7 @@ install:
   # Build image
   - docker-compose build $SERVICE1-$ARCH_TAG
   - docker-compose build $SERVICE2-$ARCH_TAG
-  - ["$SERVICE3"] && docker-compose build $SERVICE3-$ARCH_TAG
+  - '["$SERVICE3"] && docker-compose build $SERVICE3-$ARCH_TAG'
 
 script: true
 
