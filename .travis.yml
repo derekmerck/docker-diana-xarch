@@ -43,7 +43,7 @@ install:
   # Build image
   - docker-compose build $SERVICE1-$ARCH_TAG
   - docker-compose build $SERVICE2-$ARCH_TAG
-  - '["$SERVICE3"] && docker-compose build $SERVICE3-$ARCH_TAG'
+  - '["$SERVICE3"] && docker-compose build $SERVICE3-$ARCH_TAG || echo "No SERVICE3 defined"'
 
 script: true
 
