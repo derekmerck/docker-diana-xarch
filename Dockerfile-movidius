@@ -1,0 +1,46 @@
+# xArch Movidius Image
+# Derek Merck, Summer 2018
+
+ARG ARCH="arm32v7"
+
+FROM derekmerck/diana:${ARCH}
+MAINTAINER Derek Merck <derek_merck@brown.edu>
+
+RUN apt update \
+    && apt install -y --no-install-recommends \
+        python3-matplotlib \
+        python-dev \
+        python-pip \
+        python-setuptools \
+        python-numpy-dev \
+        python-openssl \
+        python-cffi \
+        python-h5py \
+        python-matplotlib \
+    && apt-get clean
+
+RUN pip install -U pip
+
+RUN apt update && apt install \
+     python3-wheel \
+     python-wheel
+
+RUN pip install --no-deps --no-cache-dir -U \
+        wheel \
+        numpy \
+        scipy \
+        h5py \
+        pyyaml \
+        pillow
+
+RUN git clone -b ncsdk2 https://github.com/movidius/ncsdk /ncsdk2 \
+    && sed -i 's/exit 1//g' /ncsdk2/install.sh \
+    && sed -i 's/,<=.*//g' /ncsdk2/requirements.txt \
+    && sed -i 's/,numpy.*//g' /ncsdk2/requirements.txt \
+    && sed -i 's/numpy==/numpy>=/g' /ncsdk2/install.sh
+    # Get rid of conflicting numpy max version requirements
+
+COPY ncsdk.conf /ncsdk2/
+
+WORKDIR /ncsdk2
+RUN make install

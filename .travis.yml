@@ -18,7 +18,7 @@ env:
 
   matrix:
     - ARCH_TAG="amd64"
-    - ARCH_TAG="arm32v7"
+    - ARCH_TAG="arm32v7" SERVICE2="diana-movidius"
     - ARCH_TAG="arm64v8"
 
 before_install:
@@ -36,8 +36,13 @@ install:
 
   # Build image
   - docker-compose build $SERVICE-$ARCH_TAG
+  - ["$SERVICE2"] && docker-compose build $SERVICE2-$ARCH_TAG
 
 script: true
+
+#  - (docker run --rm derekmerck/diana:$ARCH_TAG python3 /opt/diana/apps/cli/clf_chest_pose.py -m /opt/diana/tests/resources/chest_cr/pose_weights.h5 -d /opt/diana/tests/resources/chest_cr/CR01.dcm 2> /dev/null ) | grep -q FRONTAL
+#
+#  - (docker run --rm derekmerck/diana:$ARCH_TAG python3 /opt/diana/apps/cli/clf_chest_pose.py -m /opt/diana/tests/resources/chest_cr/pose_weights.h5 -d /opt/diana/tests/resources/chest_cr/CR00.dcm 2> /dev/null ) | grep -q LATERAL
 
 after_success:
 
@@ -46,4 +51,3 @@ after_success:
 
   # manifest and push
   - python3 manifest-it.py diana-xarch.manifest.yml
-

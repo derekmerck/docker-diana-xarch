@@ -23,6 +23,10 @@ RUN apt update \
         python3-setuptools \
         python3-numpy-dev \
         python3-openssl \
+        python3-cffi \
+        python3-h5py \
+        python3-wheel \
+        python3-protobuf \
         cython3 \
         software-properties-common \
         libfreetype6-dev \
@@ -37,6 +41,9 @@ RUN apt update \
         libgdcm-tools \
         libatlas3-base \
         libhdf5-dev \
+        libhdf5-serial-dev \
+        libffi-dev \
+        libatlas-base-dev \
     && apt clean && rm -rf /var/lib/apt/lists/*
 
 ENV KERAS_BACKEND=tensorflow
@@ -46,6 +53,7 @@ RUN pip3 install -U pip
 RUN pip3 install --no-deps --no-cache-dir -U \
         wheel \
         numpy \
+        asn1crypto \
         cryptography \
         pyopenssl \
         parameterized \
@@ -61,9 +69,16 @@ RUN pip3 install --no-deps --no-cache-dir -U \
         absl-py \
         pyparsing
 
-RUN curl -O https://www.dropbox.com/s/pmijwdx0iv5mcv2/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
-    && pip install --no-deps --no-cache-dir -vvvv tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
-    && rm tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl
+# Local buid
+COPY tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl /tmp
+
+# Remote build
+#RUN curl -L -o /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
+#       https://www.dropbox.com/s/pmijwdx0iv5mcv2/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl?dl=1 \
+#    && ls -lh tensorflow-1.9.0rc0-cp3-cp35m-any.whl \
+
+RUN pip install --no-deps --no-cache-dir -vvvv /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
+    && rm tensorflow-1.9.0rc0-cp3-cp35m-any.whl
 
 RUN pip3 install --no-deps --no-cache-dir \
         keras

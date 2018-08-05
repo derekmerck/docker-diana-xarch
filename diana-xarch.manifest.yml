@@ -17,3 +17,12 @@
         architecture: arm
         variant: v8
         os: linux
+
+- image: "derekmerck/diana:movidius"
+
+  manifests:
+    - image: "derekmerck/diana:movidius-arm32v7"
+      platform:
+        architecture: arm
+        variant: v7
+        os: linux

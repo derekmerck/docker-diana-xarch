@@ -2,6 +2,12 @@ version: '3'
 
 services:
 
+  # ---------------------------
+  # diana base image
+  #   - py3
+  #   - diana
+  # ---------------------------
+
   diana-amd64:
     build:
       context: .
@@ -17,7 +23,53 @@ services:
   diana-arm64v8:
     build:
       context: .
-      dockerfile: Dockerfile-arm64
+#      dockerfile: Dockerfile-arm64
       args:
         RESIN_ARCH: jetson-tx2
     image: derekmerck/diana:arm64v8
+
+  # ---------------------------
+  # diana learn image
+  #   - py3
+  #   - tensorflow
+  #   - keras
+  #   - diana
+  # ---------------------------
+
+  diana-learn-amd64:
+    build:
+      context: .
+    image: derekmerck/diana-learn:amd64
+
+  diana-learn-arm32v7:
+    build:
+      context: .
+      args:
+        ARCH_TAG: arm32v7
+    image: derekmerck/diana:learn-arm32v7
+
+  diana-learn-arm64v8:
+    build:
+      context: .
+      dockerfile: Dockerfile-arm64
+      args:
+        RESIN_ARCH: arm64v8
+    image: derekmerck/diana:learn-arm64v8
+
+  # ---------------------------
+  # diana learn image
+  #   - py3
+  #   - tensorflow
+  #   - keras
+  #   - ncsdk2
+  #   - diana
+  # ---------------------------
+
+  # Depends on arm32v7 image -- needs to be included after regular arm build in travis
+  diana-movidius-arm32v7:
+    build:
+      context: .
+      dockerfile: Dockerfile-movidius
+    args:
+      RESIN_ARCH: arm32v7
+    image: derekmerck/diana:movidius-arm32v7

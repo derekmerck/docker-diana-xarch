@@ -23,10 +23,13 @@ RUN apt update \
         python3-setuptools \
         python3-numpy-dev \
         python3-openssl \
+        python3-cffi \
+        python3-h5py \
+        python3-wheel \
+        python3-protobuf \
         cython3 \
         software-properties-common \
         libfreetype6-dev \
-        libpng-dev \
         pkg-config \
         libpng-dev \
         libjpeg-dev \
@@ -37,6 +40,7 @@ RUN apt update \
         libgdcm-tools \
         libatlas3-base \
         libhdf5-dev \
+        libffi-dev \
     && apt clean && rm -rf /var/lib/apt/lists/*
 
 ENV KERAS_BACKEND=tensorflow
@@ -46,6 +50,7 @@ RUN pip3 install -U pip
 RUN pip3 install --no-deps --no-cache-dir -U \
         wheel \
         numpy \
+        asn1crypto \
         cryptography \
         pyopenssl \
         parameterized \
