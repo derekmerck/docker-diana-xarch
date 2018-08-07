@@ -39,8 +39,12 @@ COPY tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl /tmp
 
 # --no-cache-dir
 
-RUN pip install --no-deps /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
+#apt install pciutils
+
+RUN pip3 install --no-deps /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl \
     && rm /tmp/tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl
 
 RUN pip3 install --no-deps --no-cache-dir \
         keras
+
+RUN pip3 install -e /opt/diana/packages/halibut
