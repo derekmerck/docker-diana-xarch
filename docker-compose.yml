@@ -4,7 +4,23 @@ services:
 
   # ---------------------------
   # diana base image
-  #   - py3
+  #   - conda py3.7
+  #   - diana
+  # ---------------------------
+
+  diana-conda-amd64:
+    build:
+      context: .
+    image: derekmerck/diana:conda-amd64
+
+  diana-conda-arm32v7:
+    build:
+      context: .
+    image: derekmerck/diana:conda-amd64
+
+  # ---------------------------
+  # diana base image
+  #   - system py3.5
   #   - diana
   # ---------------------------
 

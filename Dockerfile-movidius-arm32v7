@@ -1,4 +1,4 @@
-# xArch Diana-Movidius Image
+# xArch Diana Movidius Image
 # Derek Merck, Summer 2018
 
 ARG ARCH="arm32v7"
