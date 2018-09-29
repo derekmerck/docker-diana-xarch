@@ -10,13 +10,13 @@ services:
 
   diana-conda-amd64:
     build:
-      context: .
-    image: derekmerck/diana:conda-amd64
+      context: conda-python
+    image: diana-conda-amd64
 
   diana-conda-arm32v7:
     build:
-      context: .
-    image: derekmerck/diana:conda-amd64
+      context: conda-python
+    image: diana-conda-amd64
 
   # ---------------------------
   # diana base image
@@ -26,26 +26,29 @@ services:
 
   diana-amd64:
     build:
-      context: .
-    image: derekmerck/diana:amd64
+      context: system-python/diana
+    image: diana-amd64
 
   diana-arm32v7:
     build:
-      context: .
+      context: system-python/diana
       args:
-        RESIN_ARCH: raspberrypi3
-    image: derekmerck/diana:arm32v7
+        RESIN_ARCH:   armv7hf
+        DOCKER_ARCH:  arm32v7
+    image: diana-arm32v7
 
-  diana-arm64v8:
+  orthanc-arm64v8:
     build:
-      context: .
+      context: system-python/diana
       args:
-        RESIN_ARCH: jetson-tx2
-    image: derekmerck/diana:arm64v8
+        RESIN_ARCH:   aarch64
+        DOCKER_ARCH:  arm64v8
+    image: diana-arm64v8
+
 
   # ---------------------------
   # diana learn image
-  #   - py3
+  #   - system py3.5
   #   - tensorflow
   #   - keras
   #   - diana
@@ -53,29 +56,28 @@ services:
 
   diana-learn-amd64:
     build:
-      context: .
-      dockerfile: Dockerfile-learn
-    image: derekmerck/diana:learn-amd64
+      context: system-python/diana-learn
+    image: diana-learn-amd64
 
   diana-learn-arm32v7:
     build:
-      context: .
-      dockerfile: Dockerfile-learn
+      context: system-python/diana-learn
       args:
-        ARCH_TAG: arm32v7
-    image: derekmerck/diana:learn-arm32v7
+        DOCKER_ARCH: arm32v7
+    image: diana-learn-arm32v7
 
   diana-learn-arm64v8:
     build:
-      context: .
-      dockerfile: Dockerfile-learn-arm64v8
+      context: system-python/diana-learn
+      dockerfile: Dockerfile-arm64v8
       args:
-        RESIN_ARCH: arm64v8
-    image: derekmerck/diana:learn-arm64v8
+        DOCKER_ARCH: arm64v8
+    image: diana-learn-arm64v8
+
 
   # ---------------------------
   # diana learn image
-  #   - py3
+  #   - system py3.5, py2.7
   #   - tensorflow
   #   - keras
   #   - ncsdk2
@@ -84,8 +86,7 @@ services:
 
   diana-movidius-arm32v7:
     build:
-      context: .
-      dockerfile: Dockerfile-movidius-arm32v7
+      context: system-python/movidius
       args:
-        RESIN_ARCH: arm32v7
-    image: derekmerck/diana:movidius-arm32v7
+        DOCKER_ARCH: arm32v7
+    image: diana-movidius-arm32v7

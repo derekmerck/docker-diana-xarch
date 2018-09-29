@@ -1,10 +1,10 @@
 # xArch Diana Movidius Image
 # Derek Merck, Summer 2018
 
-ARG ARCH="arm32v7"
+ARG DOCKER_ARCH="arm32v7"
 
-FROM derekmerck/diana:learn-${ARCH}
-MAINTAINER Derek Merck <derek_merck@brown.edu>
+FROM diana-learn-${DOCKER_ARCH}
+LABEL description="X-Arch DIANA-learn (Movidius)"
 
 RUN apt update \
     && apt install -y --no-install-recommends \

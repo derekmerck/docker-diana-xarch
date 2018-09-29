@@ -1,16 +1,15 @@
 # xArch Diana-Learn System Python Image
 # Derek Merck, Summer 2018
 
-ARG ARCH_TAG="amd64"
-#ARG ARCH_TAG="arm32v7"
-#ARG ARCH_TAG="arm64v8"
+ARG DOCKER_ARCH="amd64"
+# ARG DOCKER_ARCH="arm32v7"
+# ARG DOCKER_ARCH="arm64v8"
 
-FROM derekmerck/diana:${ARCH_TAG}
-MAINTAINER Derek Merck <derek_merck@brown.edu>
+FROM diana-$DOCKER_ARCH
+LABEL description="X-Arch DIANA-learn"
 
-RUN apt update \
-    && apt upgrade \
-    && apt install -y --no-install-recommends \
+RUN apt -y update
+RUN DEBIAN_FRONTEND=noninteractive apt -y install --no-install-recommends \
         python3-scipy \
         python3-h5py \
         python3-protobuf \
