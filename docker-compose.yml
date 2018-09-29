@@ -37,7 +37,7 @@ services:
         DOCKER_ARCH:  arm32v7
     image: diana-arm32v7
 
-  orthanc-arm64v8:
+  diana-arm64v8:
     build:
       context: system-python/diana
       args:
