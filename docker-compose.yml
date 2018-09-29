@@ -86,7 +86,7 @@ services:
 
   diana-movidius-arm32v7:
     build:
-      context: system-python/movidius
+      context: system-python/diana-movidius
       args:
         DOCKER_ARCH: arm32v7
     image: diana-movidius-arm32v7
