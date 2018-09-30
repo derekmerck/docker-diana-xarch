@@ -1,8 +1,8 @@
 # xArch Diana-Learn System Python Image
 # Derek Merck, Summer 2018
 
-ARG DOCKER_ARCH="amd64"
-# ARG DOCKER_ARCH="arm32v7"
+# ARG DOCKER_ARCH="amd64"
+ARG DOCKER_ARCH="arm32v7"
 # ARG DOCKER_ARCH="arm64v8"
 
 FROM diana-$DOCKER_ARCH
@@ -34,8 +34,13 @@ RUN pip3 install --no-deps --no-cache-dir -U \
 
 ENV KERAS_BACKEND=tensorflow
 
+ARG TF_WHEEL
+COPY ${TF_WHEEL} /tmp/${TF_WHEEL}
+
 RUN pip3 install --no-cache-dir -U \
-    tensorflow \
+    /tmp/${TF_WHEEL} \
     keras
+
+RUN rm /tmp/${TF_WHEEL}
 
 RUN pip3 install -e /opt/diana/packages/halibut

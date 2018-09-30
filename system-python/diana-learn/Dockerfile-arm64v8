@@ -31,7 +31,7 @@ RUN pip3 install --no-deps --no-cache-dir -U \
 
 ENV KERAS_BACKEND=tensorflow
 
-# Local buid
+# Local build
 COPY tensorflow-1.9.0rc0-cp35-cp35m-linux_aarch64.whl /tmp
 
 # Remote build

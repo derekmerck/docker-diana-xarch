@@ -61,10 +61,14 @@ services:
 
   diana-learn-arm32v7:
     build:
-      context: system-python/diana-learn
+      context: system-python/diana-learn-dl
       args:
         DOCKER_ARCH: arm32v7
+        TF_URL:   https://storage.googleapis.com/tensorflow-nightly
+        TF_WHEEL: tensorflow-1.10.0-cp34-none-linux_armv7l.whl
     image: diana-learn-arm32v7
+
+# curl -O https://storage.googleapis.com/tensorflow-nightly/tensorflow-1.10.0-cp34-none-linux_armv7l.whl
 
   diana-learn-arm64v8:
     build:
@@ -72,6 +76,8 @@ services:
       dockerfile: Dockerfile-arm64v8
       args:
         DOCKER_ARCH: arm64v8
+        TF_URL:
+        TF_WHEEL: tensorflow-1.11.0rc1-cp35-cp35m-linux_aarch64.whl
     image: diana-learn-arm64v8
 
 
