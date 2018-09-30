@@ -71,6 +71,10 @@ A [Travis][] automation pipeline for git-push-triggered image regeneration and t
 
 [Travis]: http://travis-ci.org
 
+```bash
+docker run -it diana-amd64 python3 -c "import diana; print(diana.__version__)"
+0.3.3
+```
 
 ### TensorFlow
 
