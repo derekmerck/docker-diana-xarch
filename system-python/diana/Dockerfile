@@ -18,11 +18,9 @@ LABEL vendor="Rhode Island Hospital"
 LABEL architecture="$DOCKER_ARCH"
 LABEL os="linux"
 
-RUN apt -y clean
-RUN apt -y update
-RUN apt -f install
-RUN DEBIAN_FRONTEND=noninteractive dpkg --configure -a
-RUN DEBIAN_FRONTEND=noninteractive apt -y upgrade
+# Buster image diversion problems https://www.kubuntuforums.net/archive/index.php/t-73577.html
+RUN /var/lib/dpkg/info/dash.preinst install
+RUN apt -y clean && apt -y update && apt -y upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt -y install --no-install-recommends \
     wget \
     nano \
