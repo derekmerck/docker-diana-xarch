@@ -36,12 +36,12 @@ RUN pip3 install --no-deps --no-cache-dir -U \
 ENV KERAS_BACKEND=tensorflow
 
 ARG TF_WHEEL
-COPY ${TF_WHEEL} /tmp/${TF_WHEEL}
+COPY ${TF_WHEEL} /tmp/tensorflow-1-cp3-none-any.whl
 
 RUN pip3 install --no-cache-dir -U \
-    /tmp/${TF_WHEEL} \
+    /tmp/tensorflow-1-cp3-none-any.whl \
     keras
 
-RUN rm /tmp/${TF_WHEEL}
+RUN rm /tmp/tensorflow-1-cp3-none-any.whl
 
 RUN pip3 install -e /opt/diana/packages/halibut
