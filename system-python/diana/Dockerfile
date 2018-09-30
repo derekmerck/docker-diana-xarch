@@ -19,7 +19,7 @@ LABEL architecture="$DOCKER_ARCH"
 LABEL os="linux"
 
 # Buster image diversion problems https://www.kubuntuforums.net/archive/index.php/t-73577.html
-RUN /var/lib/dpkg/info/dash.preinst install
+RUN /var/lib/dpkg/info/dash.preinst install || true
 RUN apt -y clean && apt -y update && apt -y upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt -y install --no-install-recommends \
     wget \
