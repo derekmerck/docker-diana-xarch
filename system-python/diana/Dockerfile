@@ -5,7 +5,7 @@ ARG RESIN_ARCH="amd64"
 #ARG RESIN_ARCH="armv7hf"
 #ARG RESIN_ARCH="aarch64"
 
-FROM resin/${RESIN_ARCH}-debian:stretch
+FROM resin/${RESIN_ARCH}-debian:buster
 
 ARG DOCKER_ARCH="amd64"
 # ARG DOCKER_ARCH="arm32v7"
