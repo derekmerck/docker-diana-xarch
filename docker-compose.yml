@@ -72,10 +72,10 @@ services:
   diana-learn-arm64v8:
     build:
       context: system-python/diana-learn
-      dockerfile: Dockerfile-arm64v8
+      dockerfile: Dockerfile-dl
       args:
         DOCKER_ARCH: arm64v8
-        TF_URL:
+        TF_URL: https://www.dropbox.com/s/svovlw463xe64u3
         TF_WHEEL: tensorflow-1.11.0rc1-cp35-cp35m-linux_aarch64.whl
     image: diana-learn-arm64v8
 

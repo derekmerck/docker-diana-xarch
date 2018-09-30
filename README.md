@@ -74,6 +74,8 @@ A [Travis][] automation pipeline for git-push-triggered image regeneration and t
 ```bash
 docker run -it diana-amd64 python3 -c "import diana; print(diana.__version__)"
 0.3.3
+
+docker run -it diana-learn-amd64 python3 -c "import tensorflow; print(tensorflow.__version__)"
 ```
 
 ### TensorFlow
