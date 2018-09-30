@@ -61,7 +61,8 @@ services:
 
   diana-learn-arm32v7:
     build:
-      context: system-python/diana-learn-dl
+      context: system-python/diana-learn
+      dockerfile: Dockerfile-dl
       args:
         DOCKER_ARCH: arm32v7
         TF_URL:   https://storage.googleapis.com/tensorflow-nightly
