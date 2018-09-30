@@ -74,6 +74,10 @@ A [Travis][] automation pipeline for git-push-triggered image regeneration and t
 
 ### TensorFlow
 
+```
+curl -O https://storage.googleapis.com/tensorflow-nightly/tensorflow-1.10.0-cp34-none-linux_armv7l.whl
+```
+
 The official `arm32` tensorflow wheels are available from pypi or as [nightly build artifacts][tfrpi].  The wheel name for the python 3.4 build has to be manipuated to remove the platform restriction tags in order to install on 3.5 or 3.6.
 
 [tfrpi]: http://ci.tensorflow.org/view/Nightly/

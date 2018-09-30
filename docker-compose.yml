@@ -69,8 +69,6 @@ services:
         TF_WHEEL: tensorflow-1.10.0-cp34-none-linux_armv7l.whl
     image: diana-learn-arm32v7
 
-# curl -O https://storage.googleapis.com/tensorflow-nightly/tensorflow-1.10.0-cp34-none-linux_armv7l.whl
-
   diana-learn-arm64v8:
     build:
       context: system-python/diana-learn

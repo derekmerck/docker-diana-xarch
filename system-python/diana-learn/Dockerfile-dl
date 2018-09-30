@@ -23,14 +23,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt -y install --no-install-recommends \
    && apt clean && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-deps --no-cache-dir -U \
-    scipy \
     pydot \
-    h5py \
-    numpy \
     parameterized \
     protobuf \
     absl-py \
     pyparsing
+
+#    scipy \
+#    h5py \
+#    numpy \
 
 ENV KERAS_BACKEND=tensorflow
 
