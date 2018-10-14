@@ -29,10 +29,6 @@ RUN pip3 install --no-deps --no-cache-dir -U \
     absl-py \
     pyparsing
 
-#    scipy \
-#    h5py \
-#    numpy \
-
 ENV KERAS_BACKEND=tensorflow
 
 RUN pip3 install --no-cache-dir -U \
