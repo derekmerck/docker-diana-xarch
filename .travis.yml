@@ -20,7 +20,7 @@ addons:
 env:
   global:
     - SERVICE0="diana"
-    - SERVICE1="diana-learn"
+    - SERVICE1="diana-ai"
 
   matrix:
     - ARCH_TAG="amd64"

@@ -47,37 +47,37 @@ services:
 
 
   # ---------------------------
-  # diana learn image
+  # diana ai image
   #   - system py3.5
   #   - tensorflow
   #   - keras
   #   - diana
   # ---------------------------
 
-  diana-learn-amd64:
+  diana-ai-amd64:
     build:
-      context: system-python/diana-learn
-    image: diana-learn-amd64
+      context: system-python/diana-ai
+    image: diana-ai-amd64
 
-  diana-learn-arm32v7:
+  diana-ai-arm32v7:
     build:
-      context: system-python/diana-learn
+      context: system-python/diana-ai
       dockerfile: Dockerfile-dl
       args:
         DOCKER_ARCH: arm32v7
         TF_URL:   https://storage.googleapis.com/tensorflow-nightly
         TF_WHEEL: tensorflow-1.10.0-cp34-none-linux_armv7l.whl
-    image: diana-learn-arm32v7
+    image: diana-ai-arm32v7
 
-  diana-learn-arm64v8:
+  diana-ai-arm64v8:
     build:
-      context: system-python/diana-learn
+      context: system-python/diana-ai
       dockerfile: Dockerfile-dl
       args:
         DOCKER_ARCH: arm64v8
         TF_URL: https://www.dropbox.com/s/svovlw463xe64u3
         TF_WHEEL: tensorflow-1.11.0rc1-cp35-cp35m-linux_aarch64.whl
-    image: diana-learn-arm64v8
+    image: diana-ai-arm64v8
 
 
   # ---------------------------
